@@ -1,6 +1,3 @@
 module InstactionJs
-  module Rails
-    class Engine < ::Rails::Engine
-    end
-  end
+  require 'instaction_js/engine.rb'
 end

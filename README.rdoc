@@ -3,3 +3,43 @@
 Lets you register selectors for elements with a callback that is run every time a matching DOM element is added to the pag . Useful for replacing <select> fields or other progressive-enhancements!
 
 Live demo: https://rudolfhattenkofer.github.io/instaction_js/
+
+== Installation
+=== Rails
+Install the gem:
+
+    gem 'instaction_js', git: 'git://github.com/RudolfHattenkofer/instaction_js'
+
+Require in your Javascript source file:
+
+    //= require instaction
+
+Define actions!
+
+    Instaction.register('.some-klass', function( $node ) {
+        // Do stuff
+    });
+
+
+=== Other
+This is packed as a Rails gem for ease of use, but for non-Rails projects you can just grab this file: link:blob/master/app/assets/javascripts/instaction.js
+
+    <script src="instaction.js"></script>
+
+== Usage
+There is currently only one option this library has: How to process a selector. Either you pass a class name, the default:
+
+    Instaction.register('.some-klass', function( $node ) {
+        // Do stuff
+    });
+
+or a jQuery selector:
+
+    Instaction.register('[data-tooltip]', 'jquery', function( $node ) {
+        // Do stuff
+    });
+
+That's it!
+
+== Important notes
+Make to sure to require this script in the header, since only elements *added* to the DOM are processed. If it is loaded at the bottom of the page, all the elements will already be existing and the callback fires only for future insertions!

@@ -5,7 +5,7 @@ require 'instaction_js/version'
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = 'instaction.js'
+  s.name        = 'instaction_js'
   s.version     = InstactionJs::VERSION
   s.authors     = ['Rudolf Hattenkofer']
   s.email       = ['rudolf@geardev.de']
@@ -15,5 +15,7 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
 
   s.files = Dir['{app,lib}/**/*', 'MIT-LICENSE', 'README.rdoc']
+
   s.add_dependency 'rails', '~> 4.2.0'
+  s.add_dependency 'railties', '~> 4.2.0'
 end
