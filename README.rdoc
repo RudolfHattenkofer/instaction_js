@@ -22,7 +22,7 @@ Define actions!
 
 
 === Other
-This is packed as a Rails gem for ease of use, but for non-Rails projects you can just grab this file: link:blob/master/app/assets/javascripts/instaction.js
+This is packed as a Rails gem for ease of use, but for non-Rails projects you can just grab this file: link:app/assets/javascripts/instaction.js
 
     <script src="instaction.js"></script>
 
