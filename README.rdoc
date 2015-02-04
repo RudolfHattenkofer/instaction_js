@@ -1,3 +1,5 @@
 = instaction.js
 
 Lets you register selectors for elements with a callback that is run every time a matching DOM element is added to the pag . Useful for replacing <select> fields or other progressive-enhancements!
+
+Live demo: https://rudolfhattenkofer.github.io/instaction_js/
