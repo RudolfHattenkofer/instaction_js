@@ -1,6 +1,8 @@
 = instaction.js
 
-Lets you register selectors for elements with a callback that is run every time a matching DOM element is added to the pag . Useful for replacing <select> fields or other progressive-enhancements!
+Lets you register selectors for elements with a callback that is run every time a matching DOM element is added to the page. This can be useful if you have a lot of elements that are loaded via AJAX or otherwise added later on.
+
+The most obvious use-case is replacing select tags on dynamically loaded forms with something more fancy, e.g. {Chosen}[http://harvesthq.github.io/chosen/]
 
 Live demo: https://rudolfhattenkofer.github.io/instaction_js/
 
