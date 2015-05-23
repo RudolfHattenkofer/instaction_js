@@ -83,7 +83,7 @@
       // collection of everything in our children that we need to analyze.
       var children = el.querySelectorAll('.' + klass);
       for(var i = 0, len = children.length; i < len; i++) {
-        this.handle_selector_class(el, $el, klass, callback, 'ignore_children');
+        callback($(children[i]));
       }
     };
 
