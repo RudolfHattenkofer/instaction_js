@@ -30,30 +30,40 @@
   // Actual Instaction class
   Instaction = function() {
     this.initialized = true;
-    this.actions = [];
+    this.actions_added = [];
+    this.actions_removed = [];
 
     // Process a Mutation change summary
     this.handle_dom_change = function(summary) {
       var el;
 
       for (var i = 0, slen = summary.length; i < slen; i++) {
-        for (var j = 0, nodes = summary[i].addedNodes, nlen = nodes.length; j < nlen; j++) {
-          el = nodes[j];
+        for (var j = 0, nodes1 = summary[i].addedNodes, nlen1 = nodes1.length; j < nlen1; j++) {
+          el = nodes1[j];
 
           // Skip text nodes
           if (el.nodeType !== 1)
             continue;
 
-          this.handle_element(el);
+          this.handle_element(el, this.actions_added);
+        }
+
+        for (var k = 0, nodes2 = summary[i].removedNodes, nlen2 = nodes2.length; k < nlen2; k++) {
+          el = nodes2[k];
+
+          // Skip text nodes
+          if (el.nodeType !== 1)
+            continue;
+
+          this.handle_element(el, this.actions_removed);
         }
       }
     };
 
 
     // Process a changed element
-    this.handle_element = function(el) {
-      var actions = this.actions,
-        entry,
+    this.handle_element = function(el, actions) {
+      var entry,
         $el = $(el);
 
       for(var i = 0, len = actions.length; i < len; i++) {
@@ -112,20 +122,27 @@
      *
      * @param selector The selector to match
      * @param selector_type What kind of selector either 'class' or 'jquery'
+     * @param mode Either 'added' or 'removed'
      * @param callback Callback to call
      */
-    this.register = function(selector, selector_type, callback) {
-      // selector_type can be omitted
-      if(! callback) {
+    this.register = function(selector, selector_type, mode, callback) {
+      // selector_type and mode can be omitted
+      if(!mode) {
+        mode = 'added';
         callback = selector_type;
         selector_type = false;
+      }
+      else if(!callback) {
+        callback = mode;
+        mode = 'added';
       }
 
       // Default is class
       selector_type = selector_type || 'class';
 
       // Add the handler
-      this.actions.push({
+      var collection = mode == 'added' ? this.actions_added : this.actions_removed;
+      collection.push({
         selector: selector_type == 'class' ? selector.substr(1) : selector,
         selector_type: selector_type,
         callback: callback
